@@ -14,39 +14,52 @@ class HomePage extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: Column(
-        children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                width: screenWidth,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                ),
-                child: ClipRRect(
-                  child: Image.asset(
-                    'asset/RM.jpg',
-                    fit: BoxFit.cover,
+      body: SingleChildScrollView(
+
+        child: Column(
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: screenWidth,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                  ),
+                  child: ClipRRect(
+                    child: Image.asset(
+                      'asset/RM.jpg',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              const Text(
-                'Recharge Mate',
-                style: TextStyle(
-                  color: Colors.teal,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+                const Text(
+                  'Recharge Mate',
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+              ],
+            ),
+
+            Container(
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                '    Services',
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 18,fontWeight: FontWeight.w200),
               ),
-            ],
-          ),
-          const SizedBox(height: 20), // Add some spacing between image and buttons
-          const Features(), // Add the features widget with buttons beneath the image
-        ],
+            ),
+            const SizedBox(height: 20), // Add some spacing between image and buttons
+            const Features(), // Add the features widget with buttons beneath the image
+          ],
+        ),
       ),
     );
   }
+
 }
 class Features extends StatelessWidget {
   const Features({Key? key}) : super(key: key);
@@ -55,7 +68,7 @@ class Features extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        // color: Colors.white,
         borderRadius: BorderRadius.circular(40),
       ),
       child: const Column(
@@ -63,17 +76,19 @@ class Features extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MenuItem(title: 'Recharge', imagePath: 'asset/RE.png', page: recharge()),
-              MenuItem(title: 'Balance', imagePath: 'asset/RE.png', page: balance()),
-              MenuItem(title: 'Offers', imagePath: 'asset/RE.png', page: Offers()),
-              MenuItem(title: 'Payment', imagePath: 'asset/RE.png', page: payment()),
+              MenuItem(title: 'Recharge', imagePath: 'asset/RE.png', page:  Recharge()),
+              MenuItem(title: 'Balance', imagePath: 'asset/balance.png', page: balance()),
+
+              MenuItem(title: 'Offers', imagePath: 'asset/offers.png', page: Offers()),
+              MenuItem(title: 'Payment', imagePath: 'asset/pay.png', page: payment()),
             ],
           ),
           SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MenuItem(title: 'Add Balance', imagePath: 'asset/RE.png', page: addBalance()),
+              MenuItem(title: 'Add Balance', imagePath: 'asset/add.png', page: addBalance()),
+
                // Add Spacer widget to occupy remaining space
             ],
           ),
@@ -112,7 +127,7 @@ class MenuItem extends StatelessWidget {
         height: MediaQuery.of(context).size.width * 0.20,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
+          // color: Colors.white,
           boxShadow: const [
             /*BoxShadow(
               color: Colors.grey,
