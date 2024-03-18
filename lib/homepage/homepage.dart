@@ -5,6 +5,9 @@ import '../features/add balance.dart';
 import '../features/balance.dart';
 import '../features/payment.dart';
 import '../features/recharge.dart';
+import '../others/charge.dart';
+import '../others/contactus.dart';
+import '../others/safety.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -187,10 +190,10 @@ class otherFeatures extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              others(title: 'Recharge', imagePath: 'asset/RE.png', page:  Recharge()),
-              others(title: 'Balance', imagePath: 'asset/balance.png', page: balance()),
 
-              others(title: 'Offers', imagePath: 'asset/offers.png', page: Offers()),
+              others(title: 'Charge', imagePath: 'asset/char.png', page: charge()),
+              others(title: 'Contact', imagePath: 'asset/conUS.png', page:  Contact()),
+              others(title: 'Safety', imagePath: 'asset/safety.png', page: safety()),
               others(title: 'Payment', imagePath: 'asset/pay.png', page: payment()),
             ],
           ),
