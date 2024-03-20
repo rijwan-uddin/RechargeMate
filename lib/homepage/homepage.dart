@@ -72,7 +72,29 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home ,color: Colors.green,),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_wallet,color: Colors.green,),
+            label: 'Transactions',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.contacts,color: Colors.green,),
+            label: 'Contacts',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment,color: Colors.green,),
+            label: 'My Recharge Mate' ,backgroundColor: Colors.black,
+          ),
+        ],
+         // Change the selected item color
+      ),
     );
+
   }
 
 }
