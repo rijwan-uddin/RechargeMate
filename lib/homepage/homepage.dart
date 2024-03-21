@@ -219,7 +219,7 @@ class otherFeatures extends StatelessWidget {
               others(title: 'Charge', imagePath: 'asset/char.png', page: charge()),
               others(title: 'Contact', imagePath: 'asset/conUS.png', page:  Contact()),
               others(title: 'Safety', imagePath: 'asset/safety.png', page: safety()),
-              others(title: 'Payment', imagePath: 'asset/pay.png', page: payment()),
+              others(title: 'RM', imagePath: 'asset/pay.png', page: payment()),
             ],
           ),
         ],
