@@ -44,6 +44,7 @@ class HomePage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                BalanceCheckButton(),
               ],
             ),
 
@@ -283,6 +284,96 @@ class others extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+class BalanceCheckButton extends StatefulWidget {
+  const BalanceCheckButton({Key? key}) : super(key: key);
+
+  @override
+  _BalanceCheckButtonState createState() => _BalanceCheckButtonState();
+}
+
+class _BalanceCheckButtonState extends State<BalanceCheckButton> {
+  bool _showBalance = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 20.0,
+      right: 20.0,
+      child: AnimatedSwitcher(
+        duration: Duration(milliseconds: 500),
+        transitionBuilder: (Widget child, Animation<double> animation) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: Offset(0.0, -1.0),
+              end: Offset(0.0, 0.0),
+            ).animate(animation),
+            child: child,
+          );
+        },
+        child: _showBalance
+            ? BalanceDisplay(
+          onClose: () {
+            setState(() {
+              _showBalance = false;
+            });
+          },
+        )
+            : ElevatedButton(
+          onPressed: () {
+            setState(() {
+              _showBalance = true;
+            });
+            Future.delayed(Duration(seconds: 5), () {
+              setState(() {
+                _showBalance = false;
+              });
+            });
+          },
+          child: Text('Check Balance'),
+        ),
+      ),
+    );
+  }
+}
+
+class BalanceDisplay extends StatelessWidget {
+  final VoidCallback onClose;
+
+  const BalanceDisplay({Key? key, required this.onClose}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      padding: EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Balance: \$100', // Replace with actual balance
+            style: TextStyle(fontSize: 16),
+          ),
+          SizedBox(width: 8),
+          IconButton(
+            icon: Icon(Icons.close),
+            onPressed: onClose,
+          ),
+        ],
       ),
     );
   }
