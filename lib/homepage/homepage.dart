@@ -288,13 +288,14 @@ class others extends StatelessWidget {
     );
   }
 }
+
+//balancecheck
 class BalanceCheckButton extends StatefulWidget {
   const BalanceCheckButton({Key? key}) : super(key: key);
 
   @override
   _BalanceCheckButtonState createState() => _BalanceCheckButtonState();
 }
-
 class _BalanceCheckButtonState extends State<BalanceCheckButton> {
   bool _showBalance = false;
 
@@ -302,13 +303,13 @@ class _BalanceCheckButtonState extends State<BalanceCheckButton> {
   Widget build(BuildContext context) {
     return Positioned(
       top: 20.0,
-      right: 20.0,
+      left: 20.0,
       child: AnimatedSwitcher(
         duration: Duration(milliseconds: 500),
         transitionBuilder: (Widget child, Animation<double> animation) {
           return SlideTransition(
             position: Tween<Offset>(
-              begin: Offset(0.0, -1.0),
+              begin: Offset(1.0, 0.0),
               end: Offset(0.0, 0.0),
             ).animate(animation),
             child: child,
@@ -322,24 +323,34 @@ class _BalanceCheckButtonState extends State<BalanceCheckButton> {
             });
           },
         )
-            : ElevatedButton(
-          onPressed: () {
+            : GestureDetector(
+          onTap: () {
             setState(() {
               _showBalance = true;
             });
-            Future.delayed(Duration(seconds: 5), () {
+            Future.delayed(Duration(seconds: 10), () {
               setState(() {
                 _showBalance = false;
               });
             });
           },
-          child: Text('Check Balance'),
+          child: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.green,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.account_balance,
+              color: Colors.white,
+            ),
+          ),
         ),
       ),
     );
   }
 }
-
 class BalanceDisplay extends StatelessWidget {
   final VoidCallback onClose;
 
@@ -350,7 +361,7 @@ class BalanceDisplay extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
@@ -360,18 +371,33 @@ class BalanceDisplay extends StatelessWidget {
           ),
         ],
       ),
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            'Balance: \$100', // Replace with actual balance
-            style: TextStyle(fontSize: 16),
+          Icon(
+            Icons.account_balance_wallet,
+            color: Colors.green,
           ),
           SizedBox(width: 8),
-          IconButton(
-            icon: Icon(Icons.close),
-            onPressed: onClose,
+          Text(
+            'Balance: \$100', // Replace with actual balance
+            style: TextStyle(fontSize: 16, color: Colors.green),
+          ),
+          SizedBox(width: 16),
+          GestureDetector(
+            onTap: onClose,
+            child: Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey[200],
+              ),
+              child: Icon(
+                Icons.close,
+                color: Colors.grey[700],
+              ),
+            ),
           ),
         ],
       ),
