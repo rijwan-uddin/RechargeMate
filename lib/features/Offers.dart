@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recharge_mate/features/youroffer/Minute.dart';
 
 class Offers extends StatelessWidget {
   const Offers({Key? key}) : super(key: key);
@@ -17,33 +18,93 @@ class Offers extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'Your Offers',
-                style: TextStyle(fontSize: 20, color: Colors.black),
+            const Center(
+              child: Padding(
+                
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Your Offers',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                ),
               ),
             ),
             SizedBox(
-              height: 50,
-              child: ListView(
+              height: 40, // Reduced height
+              child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                children: const [
-                  SizedBox(width: 8),
-                  OfferButton(label: 'Minute'),
-                  SizedBox(width: 8),
-                  OfferButton(label: '  MB  '),
-                  SizedBox(width: 8),
-                  OfferButton(label: '  SMS '),
-                  SizedBox(width: 8),
-                  OfferButton(label: 'Combo'),
-                  SizedBox(width: 8),
-                  OfferButton(label: 'Bundle'),
-                ],
+                child: Row(
+                  children: [
+                    OfferButton(
+                      label: 'Minute',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const Minute()),
+                        );
+                      },
+                    ),
+                    OfferButton(
+                      label: 'MB',
+                      onTap: () {
+                        // Handle onTap for 2.MB
+                        Navigator.pushNamed(context, '/mb');
+                      },
+                    ),
+                    OfferButton(
+                      label: 'SMS',
+                      onTap: () {
+                        // Handle onTap for 3.SMS
+                        Navigator.pushNamed(context, '/sms');
+                      },
+                    ),
+                    OfferButton(
+                      label: 'Combo',
+                      onTap: () {
+                        // Handle onTap for 4.Combo
+                        Navigator.pushNamed(context, '/combo');
+                      },
+                    ),
+                    OfferButton(
+                      label: 'Bundle',
+                      onTap: () {
+                        // Handle onTap for 5.Bundle
+                        Navigator.pushNamed(context, '/bundle');
+                      },
+                    ),
+                    OfferButton(
+                      label: 'Bundle',
+                      onTap: () {
+                        // Handle onTap for 5.Bundle
+                        Navigator.pushNamed(context, '/bundle');
+                      },
+                    ),
+                    OfferButton(
+                      label: 'Bundle',
+                      onTap: () {
+                        // Handle onTap for 5.Bundle
+                        Navigator.pushNamed(context, '/bundle');
+                      },
+                    ),
+                    OfferButton(
+                      label: 'Bundle',
+                      onTap: () {
+                        // Handle onTap for 5.Bundle
+                        Navigator.pushNamed(context, '/bundle');
+                      },
+                    ),
+                    OfferButton(
+                      label: 'Bundle',
+                      onTap: () {
+                        // Handle onTap for 5.Bundle
+                        Navigator.pushNamed(context, '/bundle');
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -55,25 +116,33 @@ class Offers extends StatelessWidget {
 
 class OfferButton extends StatelessWidget {
   final String label;
+  final VoidCallback onTap;
 
-  const OfferButton({required this.label});
+  const OfferButton({
+    required this.label,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        // Handle button press
-      },
-      child: Text(label),
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        primary: Colors.blue,
-        textStyle: const TextStyle(fontSize: 16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0), // Adjust padding as needed
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Center(
+            child: Text(
+              label,
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
         ),
       ),
     );
   }
 }
-
