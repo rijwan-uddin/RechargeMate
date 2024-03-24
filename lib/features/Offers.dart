@@ -79,30 +79,24 @@ class Offers extends StatelessWidget {
                       label: 'Bundle',
                       onTap: () {
                         // Handle onTap for 5.Bundle
-                        Navigator.pushNamed(context, '/bundle');
+                        Navigator.pushNamed(context, '/call rate');
                       },
                     ),
                     OfferButton(
                       label: 'Bundle',
                       onTap: () {
                         // Handle onTap for 5.Bundle
-                        Navigator.pushNamed(context, '/bundle');
+                        Navigator.pushNamed(context, '/Talk Time');
                       },
                     ),
                     OfferButton(
                       label: 'Bundle',
                       onTap: () {
                         // Handle onTap for 5.Bundle
-                        Navigator.pushNamed(context, '/bundle');
+                        Navigator.pushNamed(context, '/Special');
                       },
                     ),
-                    OfferButton(
-                      label: 'Bundle',
-                      onTap: () {
-                        // Handle onTap for 5.Bundle
-                        Navigator.pushNamed(context, '/bundle');
-                      },
-                    ),
+                   
                   ],
                 ),
               ),
